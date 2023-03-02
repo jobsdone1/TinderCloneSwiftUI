@@ -59,7 +59,7 @@ class StorageRepository{
             metadata.contentType = "image/jpeg"
 
             // Upload data and metadata
-            let uploadTask = picRef.putData(data, metadata: metadata)
+            picRef.putData(data, metadata: metadata)
                 //if let error = error {
                 //    continuation.resume(throwing : error)
                 //}

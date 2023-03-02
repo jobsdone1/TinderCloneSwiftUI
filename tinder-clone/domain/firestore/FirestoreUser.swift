@@ -18,6 +18,7 @@ public struct FirestoreUser: Codable, Equatable {
     let pictures: [String]
     let liked: [String]
     let passed: [String]
+    let isactive: Bool = true
     
     var age: Int{
         Date().years(from: birthDate)
@@ -33,6 +34,7 @@ public struct FirestoreUser: Codable, Equatable {
         case pictures
         case liked
         case passed
+        case isactive
     }
 }
 
