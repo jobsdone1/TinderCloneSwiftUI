@@ -58,7 +58,7 @@ struct EditProfileView: View {
                 }
             }
 
-            ProfileSection("gender") {
+            ProfileSection("i-identify-as") {
                 ProfileRow {
                     Picker("", selection: $userGender) {
                         ForEach(Constants.genderOptions, id: \.self) {

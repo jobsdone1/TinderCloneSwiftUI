@@ -55,14 +55,18 @@ class StorageRepository{
         let picRef = storage.child("users").child(userId!).child(fileName)
         
         return try await withCheckedThrowingContinuation{ continuation in
-            picRef.putData(data, metadata: nil) { (metadata, error) in
+            let metadata = StorageMetadata()
+            metadata.contentType = "image/jpeg"
+
+            // Upload data and metadata
+            let uploadTask = picRef.putData(data, metadata: metadata)
                 //if let error = error {
                 //    continuation.resume(throwing : error)
                 //}
                 continuation.resume(returning: fileName)
             }
         }
-    }
+    //}
     
     //usersMap is a map with key-value pairs where the key is the id of the user and the value is a list with the file names of its pictures
     func getPicturesFromUsers(usersMap: [String: [String]]) async throws -> [String: [UIImage]]{

@@ -11,7 +11,7 @@ class AppColor{
     static let dislikeColors = [Color(hex: "ff6560"), Color(hex: "f83770")]
     static let likeColors = [Color(hex: "6ceac5"), Color(hex: "16dba1")]
     static let appColors = [Color(hex: "40513b"), Color(hex: "9dc08b")]
-    static let purpleColors = [Color(hex: "831bfc"),Color(hex: "9c59ea")]
+    static let purpleColors = [Color(hex: "609966"),Color(hex: "edf1d6")]
     
     static let appRed = Color(hex: "ff4457")
     static let lighterGray = Color(hex: "f0f2f4")
