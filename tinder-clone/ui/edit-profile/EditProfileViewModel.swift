@@ -136,4 +136,11 @@ class EditProfileViewModel: NSObject, ObservableObject {
             self.isLoading = false
         }
     }
+    
+    func deactivateAccount(completion: @escaping () -> Void) {
+        //Call the database service
+        firestoreRepository.deactivateAccount {
+            completion()
+        }
+    }
 }

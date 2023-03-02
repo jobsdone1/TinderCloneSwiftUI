@@ -33,7 +33,7 @@ struct EditProfileView: View {
     @State private var showImagePicker: Bool = false
     @State private var showPermissionDenied: Bool = false
     @State private var showSignOutConfirmation: Bool = false
-
+    @State private var showDeleteAccountConfirmation: Bool = false
     @State private var confirmRemoveImageIndex: Int = 0
     @State private var selectedContentType: UIImagePickerController.SourceType = .photoLibrary
     @State private var pictures: [ProfilePicture] = []
@@ -50,14 +50,14 @@ struct EditProfileView: View {
             }, onAddImageClick: {
                 showContentTypeSheet.toggle()
             })
-                    .padding(.leading).padding(.trailing)
-
+            .padding(.leading).padding(.trailing)
+            
             ProfileSection("about-you") {
                 ProfileRow {
                     ProfileTextEditor($userBio)
                 }
             }
-
+            
             ProfileSection("i-identify-as") {
                 ProfileRow {
                     Picker("", selection: $userGender) {
@@ -65,10 +65,10 @@ struct EditProfileView: View {
                             Text(LocalizedStringKey($0))
                         }
                     }
-                            .pickerStyle(.segmented).frame(maxWidth: .infinity)
+                    .pickerStyle(.segmented).frame(maxWidth: .infinity)
                 }
             }
-
+            
             ProfileSection("i-am-interested-in") {
                 ProfileRow {
                     Picker("", selection: $userOrientation) {
@@ -76,10 +76,10 @@ struct EditProfileView: View {
                             Text(LocalizedStringKey($0.rawValue)).tag($0 as Orientation?)
                         }
                     }
-                            .pickerStyle(.segmented).frame(maxWidth: .infinity)
+                    .pickerStyle(.segmented).frame(maxWidth: .infinity)
                 }
             }
-
+            
             ProfileSection("personal-info") {
                 ProfileRow {
                     ProfileLabel(title: "name", systemName: "person.circle")
@@ -92,13 +92,19 @@ struct EditProfileView: View {
                     Text(userBirthdate)
                 }
             }
-
+            
             Button(action: {
-                self.showSignOutConfirmation.toggle()
+                signOut()
             }, label: {
                 Text("sign-out")
             })
-                    .frame(maxWidth: .infinity).padding()
+            .frame(maxWidth: .infinity).padding()
+            Button(action: {
+                //Delete account
+                self.showDeleteAccountConfirmation.toggle()
+            }, label: {
+                    Text("delete-account")
+            })
         }
                 .navigationTitle("edit-profile")
                 .toolbar {
@@ -143,8 +149,8 @@ struct EditProfileView: View {
                     pictures.append(ProfilePicture(filename: nil, picture: newValue))
                     picturesModified = true
                 })
-                .alert("sign-out-confirmation", isPresented: $showSignOutConfirmation, actions: {
-                    Button("yes", action: signOut)
+                .alert("sign-out-confirmation", isPresented: $showDeleteAccountConfirmation, actions: {
+                    Button("yes", action: deleteAccount)
                     Button("cancel", role: .cancel, action: {})
                 })
                 .alert("Error",
@@ -210,6 +216,12 @@ struct EditProfileView: View {
 
     private func signOut() {
         contentViewModel.signOut()
+    }
+    
+    private func deleteAccount() {
+        editProfileViewModel.deactivateAccount{
+            contentViewModel.signOut()
+        }
     }
 }
 

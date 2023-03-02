@@ -129,6 +129,21 @@ class FirestoreRepository{
             return profiles
         })
     }
+    //MARK -- Account methods
+    
+    func deactivateAccount(completion: @escaping () -> Void) {
+        
+        //Make sure that user is logged in
+        //Run the command
+        db.collection("users").document(userId!).setData(["isactive" : false, "name": " User deleted"], merge: true)
+        { error in
+            
+            //check for errors
+            if error == nil {
+                completion()
+            }
+        }
+    }
     
     //Messages
     
