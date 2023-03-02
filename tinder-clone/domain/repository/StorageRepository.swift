@@ -56,9 +56,9 @@ class StorageRepository{
         
         return try await withCheckedThrowingContinuation{ continuation in
             picRef.putData(data, metadata: nil) { (metadata, error) in
-                if let error = error {
-                    continuation.resume(throwing : error)
-                }
+                //if let error = error {
+                //    continuation.resume(throwing : error)
+                //}
                 continuation.resume(returning: fileName)
             }
         }
