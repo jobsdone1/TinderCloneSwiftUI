@@ -219,6 +219,8 @@ struct EditProfileView: View {
     }
     
     private func deleteAccount() {
+        editProfileViewModel.deleteUserStorage()
+        
         editProfileViewModel.deactivateAccount{
         }
         

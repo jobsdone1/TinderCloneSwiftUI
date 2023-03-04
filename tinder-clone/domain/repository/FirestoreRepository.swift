@@ -130,19 +130,24 @@ class FirestoreRepository{
         })
     }
     //MARK -- Account methods
+    //func deleteUserData() {
+    //    db.collection("users").document(userId!).child(userId!).removeValue { error, _ in
+   //                 if let error = error { print(error) }
+    //            }
+    //}
     
     func deactivateAccount(completion: @escaping () -> Void) {
         
         //Make sure that user is logged in
         //Run the command
-        //db.collection("users").document(userId!).setData(["isactive" : false, "name": " User deleted"], merge: true)
-        //{ error in
+        db.collection("users").document(userId!).setData(["isactive" : false, "name": " User deleted"], merge: true)
+        { error in
             
             //check for errors
-        //    if error == nil {
-        //        completion()
-        //    }
-        //}
+            if error == nil {
+                completion()
+            }
+        }
         Auth.auth().currentUser?.delete { error in
             if error == nil{
                 // An error happened.
@@ -151,6 +156,7 @@ class FirestoreRepository{
             }
         }
     }
+    
     
     //Messages
     

@@ -143,4 +143,8 @@ class EditProfileViewModel: NSObject, ObservableObject {
             completion()
         }
     }
+    func deleteUserStorage() {
+        //Call the storage service
+        storageRepository.deleteUserStorage()
+    }
 }

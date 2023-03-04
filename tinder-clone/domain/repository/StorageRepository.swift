@@ -172,4 +172,19 @@ class StorageRepository{
         let fileRef = storage.child("users").child(userId!).child(fileName)
         try await fileRef.delete()
     }
+    
+    // Delete user info when deleting account
+    //Update profile
+    
+    func deleteUserStorage() {
+        storage.child("users").child(userId!).listAll { list, error in
+            if let error = error { print(error) }
+            list.items.forEach({ file in
+                file.delete { error in
+                    if let error = error { print(error) }
+                }
+            })
+        }
+    }
+
 }
