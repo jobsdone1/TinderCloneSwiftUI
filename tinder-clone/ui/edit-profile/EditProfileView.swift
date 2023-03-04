@@ -220,8 +220,9 @@ struct EditProfileView: View {
     
     private func deleteAccount() {
         editProfileViewModel.deactivateAccount{
-            contentViewModel.signOut()
         }
+        
+        contentViewModel.signOut()
     }
 }
 

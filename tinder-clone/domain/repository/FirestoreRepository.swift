@@ -135,12 +135,19 @@ class FirestoreRepository{
         
         //Make sure that user is logged in
         //Run the command
-        db.collection("users").document(userId!).setData(["isactive" : false, "name": " User deleted"], merge: true)
-        { error in
+        //db.collection("users").document(userId!).setData(["isactive" : false, "name": " User deleted"], merge: true)
+        //{ error in
             
             //check for errors
-            if error == nil {
-                completion()
+        //    if error == nil {
+        //        completion()
+        //    }
+        //}
+        Auth.auth().currentUser?.delete { error in
+            if error == nil{
+                // An error happened.
+            } else {
+                // Account deleted.
             }
         }
     }
