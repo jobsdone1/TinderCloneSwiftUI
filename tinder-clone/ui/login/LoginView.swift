@@ -13,7 +13,9 @@ import FacebookLogin
 struct LoginView: View {
     @EnvironmentObject var contentViewModel: ContentViewModel
     @StateObject private var loginViewModel = LoginViewModel()
-    
+    @State private var emailAddress: String = ""
+    @State private var password: String = ""
+
     var body: some View {
         VStack{
             Spacer()
@@ -64,7 +66,36 @@ struct LoginView: View {
                 .padding(.bottom, 10)
                 
             }.background(.white).cornerRadius(22)
-            Spacer()
+            
+            Spacer(minLength: 5)
+
+            TextField("", text: $emailAddress)              .frame(maxWidth: 200, alignment: .leading)
+                .placeholder(when: emailAddress == "") {
+                    Text("enter-your-email").foregroundColor(.gray)
+                }
+                .padding(.top, 10)
+                .padding(.leading, 20)
+                .padding(.trailing, 20)
+                .padding(.bottom, 10)
+                .foregroundColor(.gray)
+                .textFieldStyle(.plain)
+                .textContentType(.emailAddress)
+
+
+            .background(.white).cornerRadius(22)
+                    
+            SecureField("", text: $password)              .frame(maxWidth: 200, alignment: .leading)
+                .padding(.top, 10)
+                .padding(.leading, 20)
+                .padding(.trailing, 20)
+                .padding(.bottom, 10)
+                .foregroundColor(.gray)
+                .placeholder(when: password == "") {
+                    Text("enter-your-password").foregroundColor(.gray)
+                }
+            .background(.white).cornerRadius(22)
+            
+            Spacer(minLength: 200)
             
     
             NavigationLink(destination: CreateProfileView(), label: {
@@ -104,6 +135,17 @@ extension View{
         
         return root
     }
+    
+    func placeholder<Content: View>(
+            when shouldShow: Bool,
+            alignment: Alignment = .leading,
+            @ViewBuilder placeholder: () -> Content) -> some View {
+
+            ZStack(alignment: alignment) {
+                placeholder().opacity(shouldShow ? 1 : 0)
+                self
+            }
+        }
     
     
 }

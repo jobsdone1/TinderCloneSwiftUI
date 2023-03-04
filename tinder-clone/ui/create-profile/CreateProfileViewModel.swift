@@ -88,21 +88,12 @@ class CreateProfileViewModel: NSObject, ObservableObject {
             
             do{             // Start the sign in flow!
                 let loginManager = LoginManager()
-                loginManager.logIn(permissions: ["public_profile"])
+                loginManager.logIn(permissions: ["public_profile", "email"])
             
                 
                 let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
                 
-                try await Auth.auth().signIn(with: credential) { (authResult, error) in
-                    //authResult?.additionalUserInfo?.isNewUser
-                    if let auth = authResult{
-                        if auth.additionalUserInfo?.isNewUser == true {
-                            self.publishError(message: "User doesn't exist. Please create an account first.")
-                        } else {
-                            // User has been authenticated before
-                        }
-                    }
-                }
+                try await Auth.auth().signIn(with: credential)
                 
                 let fileNames = try await storageRepository.uploadUserPictures(profileData.pictures)
                 

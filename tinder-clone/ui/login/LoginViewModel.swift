@@ -24,7 +24,6 @@ struct LoginError: Error{
 
 class LoginViewModel: NSObject, ObservableObject {
     @Published var loginError: LoginError? = nil
-
     func signIn(controller: UIViewController) async{
     
         guard let clientID = FirebaseApp.app()?.options.clientID else {
@@ -104,7 +103,6 @@ class LoginViewModel: NSObject, ObservableObject {
             }
         }
     }
-    
     
     
     
