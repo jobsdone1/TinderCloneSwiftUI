@@ -8,6 +8,7 @@
 import SwiftUI
 import Firebase
 import GoogleSignIn
+import FacebookLogin
 
 struct LoginView: View {
     @EnvironmentObject var contentViewModel: ContentViewModel
@@ -30,7 +31,7 @@ struct LoginView: View {
                     Image("icons8-google-48")
                         .resizable()
                         .frame(width: 24, height: 24)
-                    Text("Sign In with Google")
+                    Text("Sign in with Google")
                         .foregroundColor(.gray)
                         .frame(maxWidth: .infinity)
                 }
@@ -42,7 +43,27 @@ struct LoginView: View {
                 
             }.background(.white).cornerRadius(22)
             
-
+            Button{
+                Task {
+                    await loginViewModel.signIn_Facebook(controller:getRootViewController())
+                    contentViewModel.updateAuthState()
+                }
+            } label: {
+                HStack{
+                    Image("facebook-logo")
+                        .resizable()
+                        .frame(width: 24, height: 24)
+                    Text("Sign in with Facebook")
+                        .foregroundColor(.gray)
+                        .frame(maxWidth: .infinity)
+                }
+                .frame(maxWidth: 200, alignment: .leading)
+                .padding(.top, 10)
+                .padding(.leading, 20)
+                .padding(.trailing, 20)
+                .padding(.bottom, 10)
+                
+            }.background(.white).cornerRadius(22)
             Spacer()
             
     
@@ -79,7 +100,10 @@ extension View{
             return .init()
         }
         
+        
+        
         return root
     }
+    
     
 }

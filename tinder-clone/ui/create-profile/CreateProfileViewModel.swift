@@ -12,7 +12,8 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import GoogleSignIn
 import SwiftUI
-
+import FacebookLogin
+import FacebookCore
 
 struct ProfileData{
     let name: String
@@ -74,6 +75,44 @@ class CreateProfileViewModel: NSObject, ObservableObject {
                     self.isSignUpComplete = true
                 }
                 }catch{
+                publishError(message: error.localizedDescription)
+                return
+            }
+        }
+    }
+    
+    func signUp_Facebook(profileData: ProfileData, controller: UIViewController) {
+        self.isLoading = true
+        Task{
+
+            
+            do{             // Start the sign in flow!
+                let loginManager = LoginManager()
+                loginManager.logIn(permissions: ["public_profile"])
+            
+                
+                let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
+                
+                try await Auth.auth().signIn(with: credential) { (authResult, error) in
+                    //authResult?.additionalUserInfo?.isNewUser
+                    if let auth = authResult{
+                        if auth.additionalUserInfo?.isNewUser == true {
+                            self.publishError(message: "User doesn't exist. Please create an account first.")
+                        } else {
+                            // User has been authenticated before
+                        }
+                    }
+                }
+                
+                let fileNames = try await storageRepository.uploadUserPictures(profileData.pictures)
+                
+                try await firestoreRepository.createUserProfile(name: profileData.name, birthDate: profileData.birthDate, bio: profileData.bio, isMale: profileData.isMale, orientation: profileData.orientation, pictures: fileNames)
+                
+                DispatchQueue.main.async {
+                    self.isLoading = false
+                    self.isSignUpComplete = true
+                }
+            }catch{
                 publishError(message: error.localizedDescription)
                 return
             }

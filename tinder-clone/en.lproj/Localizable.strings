@@ -25,7 +25,7 @@
 "women" = "Women";
 "both" = "Both";
 "submit" = "Submit";
-"sign-out-confirmation" = "Are you sure you want to sign out?";
+"sign-out-confirmation" = "Are you sure you want to delete your account and all your matches?";
 "yes" = "Yes";
 "cancel" = "Cancel";
 "upload-error" = "Upload Error";

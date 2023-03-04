@@ -97,6 +97,21 @@ struct CreateProfileView: View {
                     .frame(maxWidth: .infinity)
                     .padding()
                     .disabled(isInformationValid())
+            
+            Button {
+                submitInformation_fb()
+            } label: {
+                HStack {
+                    Image("facebook-logo")
+                            .resizable()
+                            .frame(width: 24, height: 24)
+
+                    Text("Create account with Facebook")
+                }
+            }
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .disabled(isInformationValid())
 
         }
                 .background(AppColor.lighterGray)
@@ -159,6 +174,12 @@ struct CreateProfileView: View {
         let profileData = ProfileData(name: userName, birthDate: datePickerSelection, bio: userBio, isMale: Constants.genderOptions.firstIndex(of: genderSelection) == 0, orientation: .both,
                 pictures: pictures.map({ $0.picture }))
         createProfileViewModel.signUp(profileData: profileData, controller: getRootViewController())
+    }
+    
+    private func submitInformation_fb() {
+        let profileData = ProfileData(name: userName, birthDate: datePickerSelection, bio: userBio, isMale: Constants.genderOptions.firstIndex(of: genderSelection) == 0, orientation: .both,
+                pictures: pictures.map({ $0.picture }))
+        createProfileViewModel.signUp_Facebook(profileData: profileData, controller: getRootViewController())
     }
 }
 

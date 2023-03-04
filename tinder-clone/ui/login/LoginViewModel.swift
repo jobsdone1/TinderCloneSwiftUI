@@ -12,6 +12,8 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import GoogleSignIn
 import SwiftUI
+import FacebookLogin
+import FacebookCore
 
 struct LoginError: Error{
     let message: String
@@ -65,6 +67,26 @@ class LoginViewModel: NSObject, ObservableObject {
         }
     }
     
+    func signIn_Facebook(controller: UIViewController) async{
+     
+        // Start the sign in flow!
+        let loginManager = LoginManager()
+        loginManager.logIn(permissions: ["public_profile", "email"])
+        
+        //let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
+
+        //Auth.auth().signIn(with: credential) { (authResult, error) in
+            //authResult?.additionalUserInfo?.isNewUser
+        //    if let auth = authResult{
+        //        if auth.additionalUserInfo?.isNewUser == true {
+        //            self.loginError = LoginError(message: "User doesn't exist. Please create an account first.")
+        //        } else {
+                    // User has been authenticated before
+        //        }
+        //    }
+        //}
+    }
+    
     func isNewUser(email: String) async throws-> Bool{
         let methods = try await Auth.auth().fetchSignInMethods(forEmail: email)
         return methods.isEmpty
@@ -82,5 +104,8 @@ class LoginViewModel: NSObject, ObservableObject {
             }
         }
     }
+    
+    
+    
     
 }

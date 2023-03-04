@@ -86,6 +86,8 @@
 		4F6E2B1229770C8900F79B69 /* create_profile.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4F6E2B0F29770C8900F79B69 /* create_profile.gif */; };
 		4F6E2B1529770D8B00F79B69 /* swiping_example.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4F6E2B1429770D8B00F79B69 /* swiping_example.gif */; };
 		4FBBA11B27977419003BC15D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4FBBA11D27977419003BC15D /* Localizable.strings */; };
+		6DE8E23229B3718B005B05C5 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 6DE8E23129B3718B005B05C5 /* FacebookCore */; };
+		6DE8E23429B3718B005B05C5 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 6DE8E23329B3718B005B05C5 /* FacebookLogin */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -185,6 +187,7 @@
 		4F6E2B1429770D8B00F79B69 /* swiping_example.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = swiping_example.gif; sourceTree = "<group>"; };
 		4FBBA11C27977419003BC15D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4FBBA11E27977445003BC15D /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		6DE8E23529B37D41005B05C5 /* tinder-clone.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "tinder-clone.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,9 +196,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F08996D278094E600A3BE95 /* FirebaseAuth in Frameworks */,
+				6DE8E23229B3718B005B05C5 /* FacebookCore in Frameworks */,
 				4F089974278095B300A3BE95 /* GoogleSignIn in Frameworks */,
 				4F31455427837E5C008D5D4A /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				4F08996F278094E600A3BE95 /* FirebaseFirestore in Frameworks */,
+				6DE8E23429B3718B005B05C5 /* FacebookLogin in Frameworks */,
 				4F089971278094E600A3BE95 /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -242,6 +247,7 @@
 		4F0899382780939A00A3BE95 /* tinder-clone */ = {
 			isa = PBXGroup;
 			children = (
+				6DE8E23529B37D41005B05C5 /* tinder-clone.entitlements */,
 				4F5B5DDB2926AA5E000E89B0 /* ui */,
 				4F5B5DC52926AA52000E89B0 /* domain */,
 				4F0899842781007900A3BE95 /* GoogleService-Info.plist */,
@@ -491,6 +497,8 @@
 				4F089970278094E600A3BE95 /* FirebaseStorage */,
 				4F089973278095B300A3BE95 /* GoogleSignIn */,
 				4F31455327837E5C008D5D4A /* FirebaseFirestoreSwift-Beta */,
+				6DE8E23129B3718B005B05C5 /* FacebookCore */,
+				6DE8E23329B3718B005B05C5 /* FacebookLogin */,
 			);
 			productName = "tinder-clone";
 			productReference = 4F0899362780939A00A3BE95 /* Tinder Clone.app */;
@@ -568,6 +576,7 @@
 			packageReferences = (
 				4F08996B278094E600A3BE95 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				4F089972278095B300A3BE95 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				6DE8E23029B3718A005B05C5 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 			);
 			productRefGroup = 4F0899372780939A00A3BE95 /* Products */;
 			projectDirPath = "";
@@ -851,6 +860,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "tinder-clone/tinder-clone.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"tinder-clone/Preview Content\"";
@@ -883,6 +893,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "tinder-clone/tinder-clone.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"tinder-clone/Preview Content\"";
@@ -1064,6 +1075,14 @@
 				minimumVersion = 6.0.0;
 			};
 		};
+		6DE8E23029B3718A005B05C5 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1091,6 +1110,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4F08996B278094E600A3BE95 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseFirestoreSwift-Beta";
+		};
+		6DE8E23129B3718B005B05C5 /* FacebookCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6DE8E23029B3718A005B05C5 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookCore;
+		};
+		6DE8E23329B3718B005B05C5 /* FacebookLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6DE8E23029B3718A005B05C5 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookLogin;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
