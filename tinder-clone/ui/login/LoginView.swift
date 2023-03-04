@@ -18,7 +18,7 @@ struct LoginView: View {
 
     var body: some View {
         VStack{
-            Spacer()
+            Spacer(minLength: 100)
             Image("logo").resizable()
                 .scaledToFit()
                 .frame(width: 150).padding(40).aspectRatio( contentMode: .fit)
@@ -67,37 +67,60 @@ struct LoginView: View {
                 
             }.background(.white).cornerRadius(22)
             
-            Spacer(minLength: 5)
-
-            TextField("", text: $emailAddress)              .frame(maxWidth: 200, alignment: .leading)
-                .placeholder(when: emailAddress == "") {
-                    Text("enter-your-email").foregroundColor(.gray)
+            Spacer(minLength: 80)
+            VStack{
+                TextField("", text: $emailAddress)              .frame(maxWidth: 200, alignment: .leading)
+                    .placeholder(when: emailAddress == "") {
+                        Text("enter-your-email").foregroundColor(.gray)
+                    }
+                    .padding(.top, 10)
+                    .padding(.leading, 20)
+                    .padding(.trailing, 20)
+                    .padding(.bottom, 10)
+                    .foregroundColor(.gray)
+                    .textFieldStyle(.plain)
+                    .textContentType(.emailAddress)
+                
+                
+                    .background(.white).cornerRadius(22)
+                
+                SecureField("", text: $password)              .frame(maxWidth: 200, alignment: .leading)
+                    .padding(.top, 10)
+                    .padding(.leading, 20)
+                    .padding(.trailing, 20)
+                    .padding(.bottom, 10)
+                    .foregroundColor(.gray)
+                    .placeholder(when: password == "") {
+                        Text("enter-your-password").foregroundColor(.gray)
+                    }
+                    .background(.white).cornerRadius(22)
+                
+                Button {
+                    submitInfo()
+                } label: {
+                    Text("I forgot my password") .font(.system(size: 18)).foregroundColor(.gray)
                 }
-                .padding(.top, 10)
-                .padding(.leading, 20)
-                .padding(.trailing, 20)
-                .padding(.bottom, 10)
-                .foregroundColor(.gray)
-                .textFieldStyle(.plain)
-                .textContentType(.emailAddress)
-
-
-            .background(.white).cornerRadius(22)
-                    
-            SecureField("", text: $password)              .frame(maxWidth: 200, alignment: .leading)
-                .padding(.top, 10)
-                .padding(.leading, 20)
-                .padding(.trailing, 20)
-                .padding(.bottom, 10)
-                .foregroundColor(.gray)
-                .placeholder(when: password == "") {
-                    Text("enter-your-password").foregroundColor(.gray)
+                .frame(maxWidth: .infinity)
+                .padding()
+                
+                Button {
+                    submitInformation()
+                } label: {
+                    HStack {
+                        Image("mail")
+                            .resizable()
+                            .frame(width: 24, height: 24)
+                        
+                        Text("Sign in with email")
+                    }
                 }
-            .background(.white).cornerRadius(22)
+                .frame(maxWidth: .infinity)
+                .padding()
+                
+                
+            }
+            Spacer(minLength: 30)
             
-            Spacer(minLength: 200)
-            
-    
             NavigationLink(destination: CreateProfileView(), label: {
                 Text("Create account")
                     .foregroundColor(.white)
@@ -112,7 +135,10 @@ struct LoginView: View {
         .frame(maxWidth: .infinity)
         .background(LinearGradient(colors: AppColor.appColors, startPoint: .leading, endPoint: .trailing)).ignoresSafeArea()
     }
-    
+    private func submitInformation() {
+    }
+    private func submitInfo() {
+    }
 }
 
 struct LoginView_Previews: PreviewProvider {
