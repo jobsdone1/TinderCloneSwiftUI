@@ -12,6 +12,8 @@
 "about-you" = "About you";
 "gender" = "Gender";
 "name" = "Name";
+"approver" = "I want to give approval to my friends and swipe for them";
+"approval" = "I want to swipe for myself and to get approval from my friends";
 "birthdate" = "Birthdate";
 "enter-your-name" = "Enter your name";
 "enter-your-email" = "Email address";

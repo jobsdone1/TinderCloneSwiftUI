@@ -8,7 +8,7 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
-struct CreateProfileView: View {
+struct CreateApproverView: View {
     @State private var userName: String = ""
     @State private var userBio: String = ""
     @State private var datePickerSelection: Date = Date()
@@ -28,7 +28,7 @@ struct CreateProfileView: View {
     @State private var droppedOutside: Bool = false
 
     @EnvironmentObject var contentViewModel: ContentViewModel
-    @StateObject private var createProfileViewModel = CreateProfileViewModel()
+    @StateObject private var createApproverViewModel = CreateApproverViewModel()
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
@@ -50,38 +50,9 @@ struct CreateProfileView: View {
                 ProfileRow {
                     TextField("enter-your-name", text: $userName)
                 }
-                ProfileRow {
-                    DatePicker(selection: $datePickerSelection, in: partialRange, displayedComponents: .date, label: { Text("pick-your-birthday") })
-                }
             }
-
-            ProfileSection("about-you") {
-                ProfileRow {
-                    ProfileTextEditor($userBio)
-                }
-            }
-
-            ProfileSection("gender") {
-                ProfileRow {
-                    Picker("", selection: $genderSelection) {
-                        ForEach(Constants.genderOptions, id: \.self) {
-                            Text(LocalizedStringKey($0)).tag($0)
-                        }
-                    }
-                            .pickerStyle(.segmented).frame(maxWidth: .infinity)
-                }
-            }
-
-            ProfileSection("i-am-interested-in") {
-                ProfileRow {
-                    Picker("", selection: $orientationSelection) {
-                        ForEach(Orientation.allCases, id: \.self) {
-                            Text(LocalizedStringKey($0.rawValue)).tag($0 as Orientation?)
-                        }
-                    }
-                            .pickerStyle(.segmented).frame(maxWidth: .infinity)
-                }
-            }
+            
+            // Add friends link
 
             Button {
                 submitInformation()
@@ -116,15 +87,15 @@ struct CreateProfileView: View {
         }
                 .background(AppColor.lighterGray)
                 .navigationBarTitle("create-profile")
-                .showLoading(createProfileViewModel.isLoading)
+                .showLoading(createApproverViewModel.isLoading)
                 .onDrop(of: [UTType.text], delegate: DropOutsideDelegate(droppedOutside: $droppedOutside))
-                .onChange(of: createProfileViewModel.signUpError, perform: { _ in
+                .onChange(of: createApproverViewModel.signUpError, perform: { _ in
                     showError = true
                 })
                 .onChange(of: image, perform: { newValue in
                     pictures.append(ProfilePicture(filename: nil, picture: newValue))
                 })
-                .onChange(of: createProfileViewModel.isSignUpComplete) { newValue in
+                .onChange(of: createApproverViewModel.isSignUpComplete) { newValue in
                     if newValue {
                         self.presentationMode.wrappedValue.dismiss()
                         contentViewModel.updateAuthState()
@@ -152,7 +123,7 @@ struct CreateProfileView: View {
                         isPresented: $showError,
                         actions: {},
                         message: {
-                            Text(createProfileViewModel.signUpError ?? "")
+                            Text(createApproverViewModel.signUpError ?? "")
                         })
                 .alert("Remove this picture?", isPresented: $showRemoveConfirmation, actions: {
                     Button("Yes", action: removePicture)
@@ -167,24 +138,24 @@ struct CreateProfileView: View {
     private func isInformationValid() -> Bool {
         return userName.count < 2 || userName.count > 30 ||
                 !CharacterSet.letters.isSuperset(of: CharacterSet(charactersIn: userName)) || genderSelection.isEmpty || orientationSelection == nil
-                || pictures.count < 2
+                || pictures.count < 1
     }
 
     private func submitInformation() {
-        let profileData = ProfileData(name: userName, birthDate: datePickerSelection, bio: userBio, isMale: Constants.genderOptions.firstIndex(of: genderSelection) == 0, orientation: .both,
+        let approverData = ApproverData(name: userName, birthDate: .now, bio: "", isMale: true, orientation: .both,
                 pictures: pictures.map({ $0.picture }))
-        createProfileViewModel.signUp(profileData: profileData, controller: getRootViewController())
+        createApproverViewModel.signUp(approverData: approverData, controller: getRootViewController())
     }
     
     private func submitInformation_fb() {
-        let profileData = ProfileData(name: userName, birthDate: datePickerSelection, bio: userBio, isMale: Constants.genderOptions.firstIndex(of: genderSelection) == 0, orientation: .both,
+        let approverData = ApproverData(name: userName, birthDate: .now, bio: "", isMale: true, orientation: .both,
                 pictures: pictures.map({ $0.picture }))
-        createProfileViewModel.signUp_Facebook(profileData: profileData, controller: getRootViewController())
+        createApproverViewModel.signUp_Facebook(approverData: approverData, controller: getRootViewController())
     }
 }
 
-struct CreateProfileView_Previews: PreviewProvider {
+struct CreateApproverView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateProfileView()
+        CreateApproverView()
     }
 }

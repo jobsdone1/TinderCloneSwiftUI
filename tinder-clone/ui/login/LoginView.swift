@@ -121,7 +121,7 @@ struct LoginView: View {
             }
             Spacer(minLength: 30)
             
-            NavigationLink(destination: CreateProfileView(), label: {
+            NavigationLink(destination: ChooseAccountTypeView(), label: {
                 Text("Create account")
                     .foregroundColor(.white)
                     .font(.headline)
