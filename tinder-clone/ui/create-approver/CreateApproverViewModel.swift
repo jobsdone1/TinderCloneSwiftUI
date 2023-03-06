@@ -68,7 +68,7 @@ class CreateApproverViewModel: NSObject, ObservableObject {
 
                 let fileNames = try await storageRepository.uploadUserPictures(approverData.pictures)
 
-                try await firestoreRepository.createUserProfile(name: approverData.name, birthDate: approverData.birthDate, bio: approverData.bio, isMale: approverData.isMale, orientation: approverData.orientation, pictures: fileNames)
+                try await firestoreRepository.createApproverProfile(name: approverData.name, pictures: fileNames)
 
                 DispatchQueue.main.async {
                     self.isLoading = false

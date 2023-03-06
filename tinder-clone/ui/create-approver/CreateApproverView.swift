@@ -38,7 +38,7 @@ struct CreateApproverView: View {
     }
     var body: some View {
         ProfileForm {
-            PictureGridView(pictures: $pictures, droppedOutside: $droppedOutside, onAddedImageClick: { index in
+            PictureSingleView(pictures: $pictures, droppedOutside: $droppedOutside, onAddedImageClick: { index in
                 confirmRemoveImageIndex = index
                 showRemoveConfirmation.toggle()
             }, onAddImageClick: {
@@ -137,7 +137,7 @@ struct CreateApproverView: View {
 
     private func isInformationValid() -> Bool {
         return userName.count < 2 || userName.count > 30 ||
-                !CharacterSet.letters.isSuperset(of: CharacterSet(charactersIn: userName)) || genderSelection.isEmpty || orientationSelection == nil
+                !CharacterSet.letters.isSuperset(of: CharacterSet(charactersIn: userName)) 
                 || pictures.count < 1
     }
 

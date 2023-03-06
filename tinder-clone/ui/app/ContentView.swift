@@ -15,15 +15,17 @@ struct ContentView: View {
             switch(contentViewModel.authState){
             case .loading:
                 LoadingView()
-            case .logged:
+            case .loggedUser:
                 HomeView()
+            case .loggedApprover:
+                HomeApproverView()
             case .unlogged:
                 LoginView()
             }
         }.onAppear(perform: {
             contentViewModel.updateAuthState()
         })
-            
+        .navigationViewStyle(.stack)
     }
 }
 

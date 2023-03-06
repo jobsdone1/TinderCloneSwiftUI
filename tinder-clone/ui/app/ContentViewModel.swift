@@ -14,16 +14,30 @@ import GoogleSignIn
 import SwiftUI
 
 enum AuthState{
-    case loading, logged, unlogged
+    case loading, loggedApprover, loggedUser, unlogged
 }
 
 class ContentViewModel: NSObject, ObservableObject {
     @Published var authState: AuthState = .loading
+    private var userId: String? { Auth.auth().currentUser?.uid }
+    private let db = Firestore.firestore()
 
     func updateAuthState(){
-        if(Auth.auth().currentUser != nil){
-            self.authState = .logged
-        } else {
+        
+        if (Auth.auth().currentUser != nil) {
+            let docRef = db.collection("users").document(userId!)
+            docRef.getDocument { (document, error) in
+                print(document!.exists)
+                if (document?.exists ?? true) {
+                    self.authState = .loggedUser
+                }
+                else{
+                    self.authState = .loggedApprover
+                }
+            }
+            
+        }
+        else {
             self.authState = .unlogged
         }
     }

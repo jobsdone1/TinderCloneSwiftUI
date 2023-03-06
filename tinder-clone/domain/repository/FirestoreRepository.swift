@@ -29,6 +29,12 @@ class FirestoreRepository{
         try db.collection("users").document(userId!).setData(from: firestoreUser)
     }
     
+    func createApproverProfile(name: String, pictures: [String]) async throws{
+        let firestoreApprover = FirestoreApprover(name: name, pictures: pictures, liked: [], passed: [])
+        
+        try db.collection("approvers").document(userId!).setData(from: firestoreApprover)
+    }
+    
     //Returns true if a match was created as a result of this swipe
     func swipeUser(swipedUserId: String, hasLiked: Bool) async throws -> Bool{
         try await db.collection("users").document(userId!).updateData([
@@ -65,6 +71,16 @@ class FirestoreRepository{
         return user
     }
     
+    func getApproverProfile(fetchedUserId: String? = nil) async throws -> FirestoreApprover{
+        let usedId: String = fetchedUserId ?? userId!
+        let result  = try await db.collection("approvers").document(usedId).getDocument()
+
+        guard let user = try result.data(as: FirestoreApprover.self) else{
+            throw ParsingError(message: "Could not parse the user profile object.")
+        }
+
+        return user
+    }
     
     func getCompatibleUsers(isUserMale: Bool, userOrientation: Orientation, excludedUsers: [String]) async throws -> [FirestoreUser]{
         var searchQuery = db.collection("users").whereField(FirestoreUser.CodingKeys.orientation.rawValue, isNotEqualTo: isUserMale ? Orientation.women.rawValue : Orientation.men.rawValue)

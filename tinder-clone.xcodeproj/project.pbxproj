@@ -94,6 +94,10 @@
 		6DE8E24229B4D482005B05C5 /* CreateApproverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE8E24029B4D482005B05C5 /* CreateApproverView.swift */; };
 		6DE8E24329B4D482005B05C5 /* CreateApproverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE8E24129B4D482005B05C5 /* CreateApproverViewModel.swift */; };
 		6DE8E24529B4D92D005B05C5 /* PictureSingleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE8E24429B4D92C005B05C5 /* PictureSingleView.swift */; };
+		6DE8E24729B545EF005B05C5 /* FirestoreApprover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE8E24629B545EE005B05C5 /* FirestoreApprover.swift */; };
+		6DE8E24C29B54EDF005B05C5 /* SwipeApproverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE8E24929B54EDF005B05C5 /* SwipeApproverView.swift */; };
+		6DE8E24D29B54EDF005B05C5 /* HomeApproverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE8E24A29B54EDF005B05C5 /* HomeApproverViewModel.swift */; };
+		6DE8E24E29B54EDF005B05C5 /* HomeApproverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE8E24B29B54EDF005B05C5 /* HomeApproverView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -200,6 +204,10 @@
 		6DE8E24029B4D482005B05C5 /* CreateApproverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateApproverView.swift; sourceTree = "<group>"; };
 		6DE8E24129B4D482005B05C5 /* CreateApproverViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateApproverViewModel.swift; sourceTree = "<group>"; };
 		6DE8E24429B4D92C005B05C5 /* PictureSingleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureSingleView.swift; sourceTree = "<group>"; };
+		6DE8E24629B545EE005B05C5 /* FirestoreApprover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirestoreApprover.swift; sourceTree = "<group>"; };
+		6DE8E24929B54EDF005B05C5 /* SwipeApproverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeApproverView.swift; sourceTree = "<group>"; };
+		6DE8E24A29B54EDF005B05C5 /* HomeApproverViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeApproverViewModel.swift; sourceTree = "<group>"; };
+		6DE8E24B29B54EDF005B05C5 /* HomeApproverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeApproverView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -352,6 +360,7 @@
 		4F5B5DCA2926AA52000E89B0 /* firestore */ = {
 			isa = PBXGroup;
 			children = (
+				6DE8E24629B545EE005B05C5 /* FirestoreApprover.swift */,
 				4F5B5DCB2926AA52000E89B0 /* FirestoreMatch.swift */,
 				4F5B5DCC2926AA52000E89B0 /* FirestoreUser.swift */,
 				4F5B5DCD2926AA52000E89B0 /* FirestoreMessage.swift */,
@@ -362,6 +371,7 @@
 		4F5B5DDB2926AA5E000E89B0 /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				6DE8E24829B54EDF005B05C5 /* homeApprover */,
 				6DE8E23F29B4D482005B05C5 /* create-approver */,
 				6DE8E23829B4BFC1005B05C5 /* choose-account-type */,
 				4F5B5DDC2926AA5E000E89B0 /* home */,
@@ -507,6 +517,16 @@
 				6DE8E24129B4D482005B05C5 /* CreateApproverViewModel.swift */,
 			);
 			path = "create-approver";
+			sourceTree = "<group>";
+		};
+		6DE8E24829B54EDF005B05C5 /* homeApprover */ = {
+			isa = PBXGroup;
+			children = (
+				6DE8E24929B54EDF005B05C5 /* SwipeApproverView.swift */,
+				6DE8E24A29B54EDF005B05C5 /* HomeApproverViewModel.swift */,
+				6DE8E24B29B54EDF005B05C5 /* HomeApproverView.swift */,
+			);
+			path = homeApprover;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -682,15 +702,18 @@
 				4F5B5DD22926AA52000E89B0 /* FirestoreRepository.swift in Sources */,
 				6DE8E23E29B4D069005B05C5 /* FilledLoadingView2.swift in Sources */,
 				4F5B5E1C2926AA5E000E89B0 /* ContentMessageView.swift in Sources */,
+				6DE8E24D29B54EDF005B05C5 /* HomeApproverViewModel.swift in Sources */,
 				4F5B5E222926AA5E000E89B0 /* ReorderableForEach.swift in Sources */,
 				4F5B5E352926AA5E000E89B0 /* CreateProfileViewModel.swift in Sources */,
 				4F5B5E2A2926AA5E000E89B0 /* LoadingView.swift in Sources */,
 				4F5B5E2D2926AA5E000E89B0 /* ProfileTextEditor.swift in Sources */,
+				6DE8E24729B545EF005B05C5 /* FirestoreApprover.swift in Sources */,
 				4F5B5E122926AA5E000E89B0 /* ContentViewModel.swift in Sources */,
 				6DE8E23B29B4BFC3005B05C5 /* ChooseAccountTypeModel.swift in Sources */,
 				4F5B5E132926AA5E000E89B0 /* ContentView.swift in Sources */,
 				4F5B5E1A2926AA5E000E89B0 /* CameraPreview.swift in Sources */,
 				4F5B5E1F2926AA5E000E89B0 /* MatchListView.swift in Sources */,
+				6DE8E24E29B54EDF005B05C5 /* HomeApproverView.swift in Sources */,
 				4F5B5E252926AA5E000E89B0 /* AppColor.swift in Sources */,
 				6DE8E24529B4D92D005B05C5 /* PictureSingleView.swift in Sources */,
 				4F5B5DD82926AA52000E89B0 /* MatchModel.swift in Sources */,
@@ -714,6 +737,7 @@
 				4F5B5E182926AA5E000E89B0 /* EditProfileView.swift in Sources */,
 				4F5B5E362926AA5E000E89B0 /* LoginViewModel.swift in Sources */,
 				4F5B5E162926AA5E000E89B0 /* ChatView.swift in Sources */,
+				6DE8E24C29B54EDF005B05C5 /* SwipeApproverView.swift in Sources */,
 				4F5B5DD42926AA52000E89B0 /* MessageModel.swift in Sources */,
 				4F5B5E112926AA5E000E89B0 /* SwipeView.swift in Sources */,
 				4F5B5E372926AA5E000E89B0 /* LoginView.swift in Sources */,

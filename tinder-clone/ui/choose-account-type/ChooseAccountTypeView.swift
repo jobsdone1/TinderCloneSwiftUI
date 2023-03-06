@@ -23,7 +23,7 @@ struct ChooseAccountTypeView: View {
                 .scaledToFit()
                 .frame(width: 150).padding(40).aspectRatio( contentMode: .fit)
             Spacer(minLength: 65)
-            NavigationLink(destination: CreateProfileView(),
+            NavigationLink(destination: CreateApproverView(),
                            label: {
                 VStack{Text("Approver")
                         .foregroundColor(.gray)
