@@ -98,6 +98,7 @@
 		6DE8E24C29B54EDF005B05C5 /* SwipeApproverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE8E24929B54EDF005B05C5 /* SwipeApproverView.swift */; };
 		6DE8E24D29B54EDF005B05C5 /* HomeApproverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE8E24A29B54EDF005B05C5 /* HomeApproverViewModel.swift */; };
 		6DE8E24E29B54EDF005B05C5 /* HomeApproverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE8E24B29B54EDF005B05C5 /* HomeApproverView.swift */; };
+		6DE8E25129B6743F005B05C5 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE8E25029B6743F005B05C5 /* LocationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -208,6 +209,7 @@
 		6DE8E24929B54EDF005B05C5 /* SwipeApproverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeApproverView.swift; sourceTree = "<group>"; };
 		6DE8E24A29B54EDF005B05C5 /* HomeApproverViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeApproverViewModel.swift; sourceTree = "<group>"; };
 		6DE8E24B29B54EDF005B05C5 /* HomeApproverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeApproverView.swift; sourceTree = "<group>"; };
+		6DE8E25029B6743F005B05C5 /* LocationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -371,6 +373,7 @@
 		4F5B5DDB2926AA5E000E89B0 /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				6DE8E24F29B6743F005B05C5 /* location */,
 				6DE8E24829B54EDF005B05C5 /* homeApprover */,
 				6DE8E23F29B4D482005B05C5 /* create-approver */,
 				6DE8E23829B4BFC1005B05C5 /* choose-account-type */,
@@ -527,6 +530,14 @@
 				6DE8E24B29B54EDF005B05C5 /* HomeApproverView.swift */,
 			);
 			path = homeApprover;
+			sourceTree = "<group>";
+		};
+		6DE8E24F29B6743F005B05C5 /* location */ = {
+			isa = PBXGroup;
+			children = (
+				6DE8E25029B6743F005B05C5 /* LocationView.swift */,
+			);
+			path = location;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -731,6 +742,7 @@
 				4F5B5E192926AA5E000E89B0 /* EditProfileViewModel.swift in Sources */,
 				4F5B5E272926AA5E000E89B0 /* FilledLoadingView.swift in Sources */,
 				6DE8E24229B4D482005B05C5 /* CreateApproverView.swift in Sources */,
+				6DE8E25129B6743F005B05C5 /* LocationView.swift in Sources */,
 				4F5B5E1E2926AA5E000E89B0 /* MatchListViewModel.swift in Sources */,
 				4F5B5E242926AA5E000E89B0 /* Extensions.swift in Sources */,
 				4F5B5E172926AA5E000E89B0 /* MessageView.swift in Sources */,
@@ -933,6 +945,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "tinder-clone/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Camera access is required to use this app feature.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "AppProved needs to access your location to find people nearby";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -966,6 +979,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "tinder-clone/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Camera access is required to use this app feature.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "AppProved needs to access your location to find people nearby";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

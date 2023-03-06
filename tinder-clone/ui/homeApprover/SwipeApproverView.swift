@@ -19,7 +19,7 @@ struct SwipeApproverView: View {
             Spacer()
             VStack{
                 ZStack{
-                    Text("no-more-profiles BITCH").font(.title3).fontWeight(.medium).foregroundColor(Color(UIColor.systemGray)).multilineTextAlignment(.center)
+                    Text("no-more-profiles").font(.title3).fontWeight(.medium).foregroundColor(Color(UIColor.systemGray)).multilineTextAlignment(.center)
                     ForEach(profiles.indices, id: \.self){ index  in
                         let model: UserModel = profiles[index]
                         

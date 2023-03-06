@@ -10,13 +10,15 @@ import SwiftUI
 struct HomeView: View {
     @StateObject private var homeViewModel = HomeViewModel()
     @State private var showMatchView = false
-
+    @StateObject var locationDataManager = LocationDataManager()
+    
     var body: some View {
         ZStack{
             VStack{
-                if(homeViewModel.isLoading){
-                    FilledLoadingView()
-                } else {
+                switch locationDataManager.locationManager.authorizationStatus {
+                case .authorizedWhenInUse:       if(homeViewModel.isLoading){
+                    FilledLoadingView()}
+                else{
                     SwipeView(
                         profiles: $homeViewModel.userProfiles,
                         onSwiped: { userModel, hasLiked in
@@ -24,6 +26,16 @@ struct HomeView: View {
                         }
                     )
                 }
+                                
+                            case .restricted, .denied:  // Location services currently unavailable.
+                                // Insert code here of what should happen when Location services are NOT authorized
+                                Text("Current location data was restricted or denied.")
+                            case .notDetermined:        // Authorization not determined yet.
+                                Text("Finding your location...")
+                                ProgressView()
+                            default:
+                                ProgressView()
+                            }
             }
 
             .onAppear(perform: performOnAppear)
@@ -50,7 +62,7 @@ struct HomeView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading){
                 NavigationLink(destination: EditProfileView(), label: {
-                    Image(systemName: "person.crop.circle").foregroundGradient(colors: AppColor.appColors).frame(maxWidth: .infinity)
+                    Image(systemName: "person.crop.circle").resizable().scaledToFit().frame(height: 35).foregroundGradient(colors: AppColor.appColors).frame(maxWidth: .infinity).frame(height: 50)
                 })
             }
 
@@ -59,10 +71,16 @@ struct HomeView: View {
                         .foregroundGradient(colors: AppColor.appColors)
                         .frame(maxWidth: .infinity)
             }
+            
+            ToolbarItem(placement: .automatic){
+                NavigationLink(destination: MatchListView(), label: {
+                    Image(systemName: "plus.circle.fill").foregroundGradient(colors: AppColor.appColors).frame(maxWidth: .infinity).frame(height: 35)
+                })
+            }
 
             ToolbarItem(placement: .navigationBarTrailing){
                 NavigationLink(destination: MatchListView(), label: {
-                    Image(systemName: "bubble.left.and.bubble.right.fill").foregroundGradient(colors: AppColor.appColors).frame(maxWidth: .infinity)
+                    Image(systemName: "bubble.left.and.bubble.right.fill").resizable().scaledToFit().frame(height: 35).foregroundGradient(colors: AppColor.appColors).frame(maxWidth: .infinity)
                 })
             }
         }

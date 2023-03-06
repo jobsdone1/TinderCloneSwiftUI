@@ -51,4 +51,5 @@ class ContentViewModel: NSObject, ObservableObject {
           print("Error signing out: %@", signOutError)
         }
     }
+    
 }
