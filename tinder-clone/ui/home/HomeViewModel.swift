@@ -11,12 +11,14 @@ import Firebase
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import SwiftUI
+import CoreLocation
 
 class HomeViewModel: NSObject, ObservableObject {
     private let db = Firestore.firestore()
     private var userId: String? { Auth.auth().currentUser?.uid }
     private let firestoreRepository: FirestoreRepository = FirestoreRepository.shared
     private let storageRepository: StorageRepository = StorageRepository.shared
+    private let locman = CLLocationManager()
     
     @Published var userProfiles: [UserModel] = []
     @Published private (set) var lastMatchProfile: UserModel? = nil

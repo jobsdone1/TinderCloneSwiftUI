@@ -16,7 +16,7 @@ struct HomeView: View {
         ZStack{
             VStack{
                 switch locationDataManager.locationManager.authorizationStatus {
-                case .authorizedWhenInUse:       if(homeViewModel.isLoading){
+                case .authorizedWhenInUse:       if(homeViewModel.isLoading){ 
                     FilledLoadingView()}
                 else{
                     SwipeView(

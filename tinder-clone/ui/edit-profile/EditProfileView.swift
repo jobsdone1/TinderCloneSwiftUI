@@ -58,17 +58,6 @@ struct EditProfileView: View {
                 }
             }
             
-            ProfileSection("i-identify-as") {
-                ProfileRow {
-                    Picker("", selection: $userGender) {
-                        ForEach(Constants.genderOptions, id: \.self) {
-                            Text(LocalizedStringKey($0))
-                        }
-                    }
-                    .pickerStyle(.segmented).frame(maxWidth: .infinity)
-                }
-            }
-            
             ProfileSection("i-am-interested-in") {
                 ProfileRow {
                     Picker("", selection: $userOrientation) {
@@ -87,7 +76,7 @@ struct EditProfileView: View {
                     Text(userName)
                 }
                 ProfileRow {
-                    ProfileLabel(title: "birthdate", systemName: "calendar")
+                    ProfileLabel(title: "Day of birth", systemName: "calendar")
                     Spacer()
                     Text(userBirthdate)
                 }

@@ -1,6 +1,7 @@
 
 import Foundation
 import CoreLocation
+import Firebase
 
 class LocationDataManager : NSObject, ObservableObject, CLLocationManagerDelegate {
     var locationManager = CLLocationManager()
@@ -40,7 +41,14 @@ class LocationDataManager : NSObject, ObservableObject, CLLocationManagerDelegat
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        // Insert code to handle location updates
+        let db = Firestore.firestore()
+        var userId: String? { Auth.auth().currentUser?.uid }
+        if let location = locations.last{
+            let lat:Double = location.coordinate.latitude
+            let long:Double = location.coordinate.longitude
+            let geo = GeoPoint.init(latitude: lat, longitude: long)
+            db.collection("users").document(userId!).updateData(["currentUserLocation" : geo])
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

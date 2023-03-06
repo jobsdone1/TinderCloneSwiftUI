@@ -51,7 +51,7 @@ struct CreateProfileView: View {
                     TextField("enter-your-name", text: $userName)
                 }
                 ProfileRow {
-                    DatePicker(selection: $datePickerSelection, in: partialRange, displayedComponents: .date, label: { Text("pick-your-birthday") })
+                    DatePicker(selection: $datePickerSelection, in: partialRange, displayedComponents: .date, label: { Text("Day of birth") })
                 }
             }
 
